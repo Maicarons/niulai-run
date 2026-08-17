@@ -52,32 +52,32 @@ export const COLORS = {
  * 通过 game/spritesheet.ts 切片加载。
  */
 export const SPRITE_PATHS = {
-  niulai: '/assets/sprites/niulai.png',
+  niulai: 'assets/sprites/niulai.png',
 } as const;
 
 /**
  * Kenney 场景与 UI 素材路径（已按项目调色板 recolor，见 public/assets/kenney/CREDITS.txt）。
  */
 export const KENNEY_PATHS = {
-  groundTop: '/assets/kenney/ground_top.png',
-  groundFill: '/assets/kenney/ground_fill.png',
-  spike: '/assets/kenney/spike.png',
-  crate: '/assets/kenney/crate.png',
-  coin: '/assets/kenney/coin.png',
-  finishFlag: '/assets/kenney/finish_flag.png',
-  bgCloud0: '/assets/kenney/bg_cloud_0.png',
-  bgCloud1: '/assets/kenney/bg_cloud_1.png',
-  bgCloud2: '/assets/kenney/bg_cloud_2.png',
-  bgCloud3: '/assets/kenney/bg_cloud_3.png',
-  bgHill0: '/assets/kenney/bg_hill_0.png',
-  bgHill1: '/assets/kenney/bg_hill_1.png',
-  bgHill2: '/assets/kenney/bg_hill_2.png',
-  bgHill3: '/assets/kenney/bg_hill_3.png',
-  heartFull: '/assets/kenney/heart_full.png',
-  heartEmpty: '/assets/kenney/heart_empty.png',
-  btnRect: '/assets/kenney/btn_rect.png',
-  btnSquare: '/assets/kenney/btn_square.png',
-  btnRound: '/assets/kenney/btn_round.png',
-  bgCloudStrip: '/assets/kenney/bg_cloud_strip.png',
-  bgHillStrip: '/assets/kenney/bg_hill_strip.png',
+  groundTop: 'assets/kenney/ground_top.png',
+  groundFill: 'assets/kenney/ground_fill.png',
+  spike: 'assets/kenney/spike.png',
+  crate: 'assets/kenney/crate.png',
+  coin: 'assets/kenney/coin.png',
+  finishFlag: 'assets/kenney/finish_flag.png',
+  bgCloud0: 'assets/kenney/bg_cloud_0.png',
+  bgCloud1: 'assets/kenney/bg_cloud_1.png',
+  bgCloud2: 'assets/kenney/bg_cloud_2.png',
+  bgCloud3: 'assets/kenney/bg_cloud_3.png',
+  bgHill0: 'assets/kenney/bg_hill_0.png',
+  bgHill1: 'assets/kenney/bg_hill_1.png',
+  bgHill2: 'assets/kenney/bg_hill_2.png',
+  bgHill3: 'assets/kenney/bg_hill_3.png',
+  heartFull: 'assets/kenney/heart_full.png',
+  heartEmpty: 'assets/kenney/heart_empty.png',
+  btnRect: 'assets/kenney/btn_rect.png',
+  btnSquare: 'assets/kenney/btn_square.png',
+  btnRound: 'assets/kenney/btn_round.png',
+  bgCloudStrip: 'assets/kenney/bg_cloud_strip.png',
+  bgHillStrip: 'assets/kenney/bg_hill_strip.png',
 } as const;

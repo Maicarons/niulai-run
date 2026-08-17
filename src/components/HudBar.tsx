@@ -19,19 +19,19 @@ export function HudBar({ hud, onPause }: HudBarProps) {
           {Array.from({ length: MAX_HP }).map((_, i) => (
             <img
               key={i}
-              src={i < hud.lives ? '/assets/kenney/heart_full.png' : '/assets/kenney/heart_empty.png'}
+              src={i < hud.lives ? 'assets/kenney/heart_full.png' : 'assets/kenney/heart_empty.png'}
               alt={i < hud.lives ? 'heart' : 'empty heart'}
               className="heart"
             />
           ))}
         </div>
-        <div className="hud__stat"><img src="/assets/kenney/coin.png" alt="coin" className="hud__icon" /> {hud.coins}</div>
+        <div className="hud__stat"><img src="assets/kenney/coin.png" alt="coin" className="hud__icon" /> {hud.coins}</div>
         <div className="hud__stat">💥 {hud.mistakes}</div>
         <div className="hud__stat">📏 {hud.distance}m</div>
       </div>
       <div className="hud__right">
         <button className="hud__pause" onClick={onPause} aria-label="暂停">
-          <img src="/assets/kenney/btn_square.png" alt="pause" />
+          <img src="assets/kenney/btn_square.png" alt="pause" />
         </button>
       </div>
       <div className="hud__progress">
