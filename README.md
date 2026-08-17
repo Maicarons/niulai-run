@@ -2,6 +2,8 @@
 
 > 一只牛主角的横版像素跑酷游戏。基于 **PixiJS v8 + React 19 + Vite 7 + TypeScript** 构建。
 
+> 🌐 在线试玩 / Live demo: https://maicarons.github.io/niulai-run/
+
 ## ✨ 特性
 
 - 横版自动向右奔跑的像素跑酷玩法
