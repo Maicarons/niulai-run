@@ -30,6 +30,7 @@ import {
   SPRITE_SCALE,
 } from './constants';
 import { getLevel } from './levels';
+import { aabb, collectCoins } from './collision';
 import { buildFrameMap, type FrameMap } from './spritesheet';
 import type { AnimName, Coin, HudSnapshot, LevelData, Rect, RunResult } from '../types/game';
 
@@ -51,16 +52,6 @@ export interface RunnerCallbacks {
   onHud: (snapshot: HudSnapshot) => void;
   onLevelClear: (result: RunResult) => void;
   onLevelFail: (result: RunResult) => void;
-}
-
-/** AABB 相交检测 */
-function aabb(a: Rect, b: Rect): boolean {
-  return (
-    a.x < b.x + b.w &&
-    a.x + a.w > b.x &&
-    a.y < b.y + b.h &&
-    a.y + a.h > b.y
-  );
 }
 
 export class GameRunner {
@@ -331,15 +322,11 @@ export class GameRunner {
   /** 金币拾取：用身体矩形与金币矩形做 AABB 重叠，碰到即吃（避免高位金币漏判） */
   private checkCoins(): void {
     const pr = this.playerRect();
-    for (const coin of this.level.coins) {
-      if (coin.collected) continue;
-      const coinRect: Rect = { x: coin.x - 9, y: coin.y - 9, w: 18, h: 18 };
-      if (aabb(pr, coinRect)) {
-        coin.collected = true;
-        this.coinsCollected += 1;
-        const g = this.coinGfx.get(coin);
-        if (g) g.visible = false;
-      }
+    const gained = collectCoins(pr, this.level.coins);
+    this.coinsCollected += gained;
+    // 隐藏所有已吃金币的精灵（含本帧新吃），幂等无副作用
+    for (const [coin, sprite] of this.coinGfx) {
+      if (coin.collected) sprite.visible = false;
     }
   }
 
