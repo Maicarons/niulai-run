@@ -1,0 +1,24 @@
+{
+  "name": "niulaigame",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "牛来 - 横板像素跑酷游戏（PixiJS + React + Vite + TypeScript）",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "pixi.js": "^8.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "typescript": "^5.6.0",
+    "vite": "^7.0.0"
+  }
+}

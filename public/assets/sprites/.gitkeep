@@ -1,0 +1,3 @@
+# 角色精灵图占位目录。
+# art-director 将把「牛来」精灵图复制为 niulai.png 放到本目录，
+# 代码（src/utils/assets.ts）会自动加载并替换占位图形。
