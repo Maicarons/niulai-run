@@ -28,3 +28,12 @@ dist-ssr
 # Local env
 .env
 .env.local
+
+# WorkBuddy internal data
+.workbuddy/
+
+# Debug artifacts
+debug/
+
+# Temp asset processing
+.kenney-tmp/

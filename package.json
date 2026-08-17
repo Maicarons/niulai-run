@@ -1,9 +1,14 @@
 {
-  "name": "niulaigame",
+  "name": "niulai-run",
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "牛来 - 横板像素跑酷游戏（PixiJS + React + Vite + TypeScript）",
+  "description": "牛来跑酷 - 横板像素跑酷游戏（PixiJS v8 + React 19 + Vite 7 + TypeScript）",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maicarons/niulai-run.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",

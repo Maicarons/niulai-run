@@ -94,7 +94,7 @@
 
 ## 6. 待确认 / 依赖
 
-- 精灵动画状态名（idle / run / jump / slide / dash / land）→ 待 art-director 确认帧网格后回填。
+- 精灵动画状态（渲染枚举）：`AnimationState = {idle=0, run=1, jump=2, fall=3, hurt=4, win=5}`，共 6 态；slide / dash 为逻辑动词（复用 run 帧 + squash / 残影），land 非独立态（落地复用 fall 末帧或回 run）。权威映射见 level-1-spec.md §6 与 asset-spec.md §1.4（网格已定稿：21×42，13×6）。
 - 具体数值（V_run、G、跳高、C_dash、坑宽）→ 待 systems GDD + 手感联调（engineering-lead）。
 - 关卡美术主题与 Kenney 素材映射 → 待 art-director 在 art-bible 落地。
 

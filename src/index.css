@@ -4,6 +4,8 @@
   --text: #e8e8f0;
   --muted: #8a8aa8;
   --accent: #f2a65a;
+  --accent-2: #57cc99;
+  --danger: #d1495b;
 }
 
 * {
@@ -27,43 +29,332 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   padding: 24px;
   min-height: 100%;
 }
 
-.app__header {
-  text-align: center;
-}
-
-.app__title {
-  margin: 0;
-  font-size: 32px;
-  letter-spacing: 4px;
-  color: var(--accent);
-}
-
-.app__subtitle {
-  margin: 4px 0 0;
-  font-size: 14px;
-  color: var(--muted);
-}
-
-.app__stage {
-  display: flex;
-  justify-content: center;
+/* 固定尺寸的舞台盒：画布与所有覆盖层都定位其中，保证布局稳定 */
+.stage {
+  position: relative;
+  width: 960px;
+  max-width: 100%;
+  height: 540px;
+  border: 1px solid #2c2c44;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #1a1a2e;
+  line-height: 0;
 }
 
 .game-canvas {
   width: 960px;
-  max-width: 100%;
-  border: 1px solid #2c2c44;
-  border-radius: 8px;
-  overflow: hidden;
+  height: 540px;
   line-height: 0;
-  background: var(--panel);
 }
 
 .game-canvas canvas {
   display: block;
+}
+
+.app__footer {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ---------------------------------------------------------------- 屏幕（菜单/选关/结算） */
+
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 32px;
+  line-height: 1.4;
+  background: radial-gradient(circle at 50% 30%, #232347 0%, #14142a 70%);
+  text-align: center;
+}
+
+.screen__title {
+  margin: 0;
+  font-size: 56px;
+  letter-spacing: 8px;
+  color: var(--accent);
+  text-shadow: 0 4px 0 rgba(0, 0, 0, 0.3);
+}
+
+.screen__title--win {
+  color: var(--accent-2);
+}
+
+.screen__title--fail {
+  color: var(--danger);
+}
+
+.screen__subtitle {
+  margin: 0;
+  font-size: 16px;
+  color: var(--muted);
+}
+
+.screen__hint {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.screen__header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+}
+
+.screen__heading {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+.screen__spacer {
+  width: 64px;
+}
+
+/* ---------------------------------------------------------------- 选关网格 */
+
+.level-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  width: 100%;
+  max-width: 620px;
+}
+
+.level-card {
+  aspect-ratio: 3 / 4;
+  border: 2px solid #3a3a5c;
+  border-radius: 12px;
+  background: #232347;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.12s ease, border-color 0.12s ease;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.level-card:hover:not(:disabled) {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.level-card--locked {
+  background: #1c1c30;
+  color: #4a4a66;
+  cursor: not-allowed;
+}
+
+.level-card__no {
+  font-size: 32px;
+}
+
+.level-card__stars {
+  font-size: 16px;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+.level-card__lock {
+  font-size: 22px;
+}
+
+/* ---------------------------------------------------------------- 按钮 */
+
+.btn {
+  border: none;
+  background: transparent url('/assets/kenney/btn_rect.png') no-repeat center / 100% 100%;
+  color: var(--text);
+  padding: 12px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: filter 0.12s ease, transform 0.12s ease;
+  line-height: 1.2;
+  min-width: 160px;
+  image-rendering: pixelated;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.btn:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+}
+
+.btn--primary {
+  color: #1a1a2e;
+  font-weight: 700;
+  text-shadow: none;
+}
+
+.btn--primary:hover {
+  filter: brightness(1.15);
+}
+
+.btn--ghost {
+  background: transparent;
+}
+
+.btn--lg {
+  padding: 14px 40px;
+  font-size: 20px;
+}
+
+/* ---------------------------------------------------------------- HUD */
+
+.hud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  line-height: 1.2;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
+}
+
+.hud__left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.hud__lives {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.heart {
+  width: 22px;
+  height: 22px;
+  image-rendering: pixelated;
+}
+
+.hud__icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: -3px;
+  margin-right: 4px;
+  image-rendering: pixelated;
+}
+
+.hud__stat {
+  font-size: 15px;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.hud__pause {
+  pointer-events: auto;
+  border: none;
+  background: transparent;
+  padding: 0;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+}
+
+.hud__pause img {
+  width: 36px;
+  height: 36px;
+  image-rendering: pixelated;
+  display: block;
+}
+
+.hud__pause:hover {
+  filter: brightness(1.15);
+}
+
+.hud__progress {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 10px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.hud__progress-fill {
+  height: 100%;
+  background: var(--accent-2);
+  transition: width 0.1s linear;
+}
+
+.hud__progress-label {
+  position: absolute;
+  right: 6px;
+  top: -1px;
+  font-size: 10px;
+  color: var(--text);
+  line-height: 12px;
+}
+
+/* ---------------------------------------------------------------- 暂停/浮层 */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 8, 18, 0.7);
+  line-height: 1.2;
+}
+
+.overlay__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px 36px;
+  border: 1px solid #3a3a5c;
+  border-radius: 12px;
+  background: var(--panel);
+  min-width: 220px;
+}
+
+.overlay__title {
+  margin: 0 0 8px;
+  text-align: center;
+  letter-spacing: 4px;
+}
+
+/* ---------------------------------------------------------------- 结算 */
+
+.result__stars {
+  font-size: 40px;
+  color: var(--accent);
+  letter-spacing: 4px;
+}
+
+.result__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
 }

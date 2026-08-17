@@ -1,13 +1,22 @@
 import { usePixiApp } from '../hooks/usePixiApp';
+import type { HudSnapshot, RunResult } from '../types/game';
+
+export interface GameCanvasProps {
+  levelId: string;
+  /** 暂停状态：true 时引擎停止物理与输入 */
+  paused: boolean;
+  onHud: (snapshot: HudSnapshot) => void;
+  onLevelClear: (result: RunResult) => void;
+  onLevelFail: (result: RunResult) => void;
+}
 
 /**
  * 游戏画布组件。
  *
- * 该组件本身不含任何游戏逻辑，仅通过 usePixiApp Hook 创建并挂载
- * PixiJS 渲染画布。React 负责声明式地提供一个容器节点，
- * 渲染循环与游戏状态完全由 PixiJS 侧驱动（详见 docs/architecture/）。
+ * 自身不含任何游戏逻辑，仅提供一个容器节点并托管 PixiJS 渲染循环。
+ * 仅在屏幕状态为 playing / pause 时由父组件挂载（见 App 状态机与架构文档 §8）。
  */
-export function GameCanvas() {
-  const containerRef = usePixiApp();
+export function GameCanvas({ levelId, paused, onHud, onLevelClear, onLevelFail }: GameCanvasProps) {
+  const containerRef = usePixiApp({ levelId, paused, onHud, onLevelClear, onLevelFail });
   return <div ref={containerRef} className="game-canvas" aria-label="牛来游戏画布" />;
 }

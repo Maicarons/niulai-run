@@ -16,6 +16,8 @@
 | 重开 Retry | R | 重开本关 | 失败后低成本重试，维持心流 |
 
 > 红线：Dash 不可作为万能解（低悬障碍必须滑、部分间隙必须跳），避免主导策略。
+>
+> 渲染说明：**滑 (Slide) 与 冲 (Dash) 是逻辑动词，非独立渲染态**。渲染层面：Slide 复用 run 帧（行 1）并叠加代码 squash（高度压扁）；Dash 复用 run 帧（行 1）并叠加代码残影。权威渲染枚举 `AnimationState = {idle=0, run=1, jump=2, fall=3, hurt=4, win=5}`（6 态）与切片网格见 level-1-spec.md §6 及 asset-spec.md §1.4。
 
 ## 2. 输入映射 (Input Mapping)
 

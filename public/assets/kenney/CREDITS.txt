@@ -1,0 +1,9 @@
+Kenney Game Assets (CC0)
+========================
+Scene tiles, background tiles, obstacles, coin, hearts and flag:
+  Kenney Pixel Platformer - https://kenney.nl/assets/pixel-platformer
+UI buttons:
+  Kenney UI Pack - https://kenney.nl/assets/ui-pack
+
+All assets are licensed under Creative Commons CC0 (Public Domain).
+Recolored to project palette where noted.
